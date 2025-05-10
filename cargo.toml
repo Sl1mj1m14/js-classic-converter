@@ -1,0 +1,13 @@
+[package]
+name = "js-classic-converter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "2.0.9"
+toml = "0.8.22"
+serde = "1.0.219"
+
+mc-classic-js = "0.2.1"
+mc-classic = "0.1.0"
+
