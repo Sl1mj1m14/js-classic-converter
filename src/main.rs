@@ -44,6 +44,9 @@ pub enum GeneralError {
     #[error("File Error")]
     FileError(#[from] std::io::Error),
 
+    #[error("Invalid Json")]
+    DeserializeError(#[from] serde_json::Error),
+
     #[error("Classic Error")]
     ClassicError(#[from] mc_classic::ClassicError),
 
@@ -104,7 +107,19 @@ pub fn main () {
             data = deserialize_data(saved_game, settings);
             println!("{:?}", data.js_level.changedBlocks.len());
         },
-        _ => ()
+
+        1 => {
+            let str: String = std::fs::read_to_string(
+                &(config.input_settings.input_folder.clone() + "/" + &config.input_settings.input_file))
+                .unwrap()
+                .replace("savedGame", "js_level");
+            data = match
+            serde_json::from_str(&str) {
+                Ok(c) => c,
+                Err(e) => { throw(GeneralError::DeserializeError(e)); exit(1)}
+            };
+        }
+        _ => throw(GeneralError::InvalidMode(config.input_settings.input_mode))
     }
 
     println!("Converting level");
