@@ -1,3 +1,4 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 # Minecraft Javascript to Classic World Converter
 Have you ever wanted to take your minecraft world out of the browser and into the olden days? Well now you can!
 [Minecraft Classic](https://minecraft.wiki/w/Java_Edition_Classic) was the original development cycle of Minecraft, being created back in 2009, and despite originally being playable in the browser, now can only be played as a seperate application and store files locally. [Minecraft Classic Remake](https://classic.minecraft.net) was made 10 years later, being recoded in javascript, and being playable and storing worlds exclusively within a browser. As such, both of these formats, despite playing nearly identically, have entirely incompatible file formats. This program functions as a converter to convert Minecraft Classic Javascript Remake files to Minecraft Classic files.
@@ -58,9 +59,22 @@ The output from these commands can then be manually pasted into a text file, and
     "settings" : {"music":false,"sound":true,"invert":false,"fps":false,"drawDistance":0,"forward":"W","left":"A","backward":"S","right":"D","jump":"<space>","build":"B","chat":"T","fog":"F","saveLoc":"<enter>","loadLoc":"R","username":"noname"}
 }
 ```
-
-
 ## File Format for Classic
+All save files in classic are gzip compressed, and saved with either a `.dat` or `.mine` extension. Typically they are saved as `level.dat`. The compression remains the same across all classic versions, but depending on the version the internal file structure differs.
+
+### rd-132211 to 0.0.12a_03
+Up through Classic 0.0.12a_03, all that was saved in the file was an array of blocks. The worlds were always 256 x 256 x 64, and the blocks were stored in the order x -> z -> y.
+
+### Classic 0.0.13a-dev to Classic 0.0.13a_03
+In the Classic 13a versions, the world size fields, the username, the world name, and a create timestamp were all added to the save format. This is the file format that is currently used by the converter, as it has the appropriate fields. Since javascript worlds do not save a world name or a timestamp, the following default values are used during conversion:
+
+```
+name: "--"
+createTime: 0
+```
+
+### Classic 0.0.14a_08 and later
+In all versions from Classic 0.0.14a_08 and onwards a modified version of Java's default serialization is used, and many more fields are gradually added over the course of versions. Serialization is not yet supported by the Classic library, and as such worlds cannot be saved in this format yet.
 
 ## How to Use
 
