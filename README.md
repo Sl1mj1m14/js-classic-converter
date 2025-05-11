@@ -23,7 +23,7 @@ Firefox local storage is stored in individual folders for each website at the fo
 
 `C:/Users/user/AppData/Roaming/Mozilla/Firefox/Profiles/########.default-release/storage/default/`
 
-Each website folder is named after the domain, with `+` replacing any characters that cannot be in a file name. There are currently only 2 websites that host <classic.minecraft.net>, meaning the only applicable local storage files are as follows:
+Each website folder is named after the domain, with `+` replacing any characters that cannot be in a file name. There are currently only 2 websites that host [classic.minecraft.net](https://classic.minecraft.net), meaning the only applicable local storage files are as follows:
 
 ```
 https+++classic.minecraft.net/ls/data.sqlite
