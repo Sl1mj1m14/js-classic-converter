@@ -77,5 +77,15 @@ createTime: 0
 In all versions from Classic 0.0.14a_08 and onwards a modified version of Java's default serialization is used, and many more fields are gradually added over the course of versions. Serialization is not yet supported by the Classic library, and as such worlds cannot be saved in this format yet.
 
 ## How to Use
+This program is an executable written in rust. Since it's an executable, it can be run just by double clicking. Launching the program initially will create an `input` folder, an `output` folder, and a `config.toml` file. The read in file should be placed in the input folder, and after successful execution the created file will be placed in the output folder.
 
-### Read In Modes
+The `config.toml` file contains an `input-mode` setting. This value can be set to either `0` (default) or `1`. 
+
+Setting it to 0, the program will attempt to read in an sqlite database. In this case, the file at this path should be placed in the `input` folder:
+
+`C:/Users/user/AppData/Roaming/Mozilla/Firefox/Profiles/########.default-release/storage/default/http+++classic.minecraft.net/ls/data.sqlite`
+*Note that `http+++classic.minecraft.net` could also be `http+++omniarchive.uk`*
+
+Setting the `input-mode` to `1` attempts to read in the raw json. A json file should be placed within the `input` folder. (See [Generic Method](#generic-method) for details)
+
+Following successful execution , a `level.dat` file will be created in the `output` folder. This file can then be placed in the base directory of a minecraft instance, and classic can be launched. It is recommended to use Classic 0.0.23a_01 or later since that is the version the remake is built off of.
