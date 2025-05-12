@@ -99,13 +99,11 @@ pub fn main () {
                 Ok(c) => c,
                 Err(e) => { throw(GeneralError::ReadError(e)); exit(1)}
             };
-            println!("{:?}", saved_game.len());
             let settings = match mc_classic_js::read_settings(config.input_settings.input_folder.clone() + "/" + &config.input_settings.input_file) {
                 Ok(c) => c,
                 Err(e) => { throw(GeneralError::ReadError(e)); exit(1)}
             };
             data = deserialize_data(saved_game, settings);
-            println!("{:?}", data.js_level.changedBlocks.len());
         },
 
         1 => {
