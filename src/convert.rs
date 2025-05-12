@@ -25,10 +25,10 @@ pub fn js_to_classic (data: Data) -> Result<Level,ConversionError> {
     for i in 0..level.depth.unwrap() {
         for j in 0..level.height.unwrap() {
             for k in 0..level.width.unwrap() {
-                let key: String = String::from(format!(r#"p{}_{}_{}"#,k,i,j));
+                let key: String = String::from(format!(r#"p{}_{}_{}"#,j,i,k));
 
                 if data.js_level.changedBlocks.contains_key(&key) {
-                    tile_map[((i*level.height.unwrap()*level.width.unwrap()) + (j*level.width.unwrap()) + k) as usize] = data.js_level.changedBlocks.get(&key).unwrap().bt;
+                    tile_map[((i*level.width.unwrap()*level.height.unwrap()) + (j*level.height.unwrap()) + k) as usize] = data.js_level.changedBlocks.get(&key).unwrap().bt;
                 }
             }
         }
