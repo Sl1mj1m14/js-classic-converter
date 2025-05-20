@@ -28,7 +28,7 @@ pub fn js_to_classic (data: Data) -> Result<Level,ConversionError> {
                 let key: String = String::from(format!(r#"p{}_{}_{}"#,j,i,k));
 
                 if data.js_level.changedBlocks.contains_key(&key) {
-                    tile_map[((i*level.width.unwrap()*level.height.unwrap()) + (j*level.height.unwrap()) + k) as usize] = data.js_level.changedBlocks.get(&key).unwrap().bt;
+                    tile_map[((i*level.width.unwrap()*level.height.unwrap()) + (k*level.height.unwrap()) + j) as usize] = data.js_level.changedBlocks.get(&key).unwrap().bt;
                 }
             }
         }
