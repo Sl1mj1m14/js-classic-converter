@@ -45,7 +45,7 @@ pub fn js_to_classic (data: Data) -> Result<Level,ConversionError> {
             4 => tile_map[i] = 5, //Planks
             5 => tile_map[i] = 38, //Rose
             6 => tile_map[i] = 37, //Dandelion
-            7 => tile_map[i] = 9, //Water
+            7 => tile_map[i] = 9, //Water [DISABLED IF 0 - THIS SHOULD ALWAYS BE 9 IN A RELEASE]
             8 => tile_map[i] = 6, //Sapling
             9 => tile_map[i] = 4, //Cobblestone
             10 => tile_map[i] = 7, //Bedrock
